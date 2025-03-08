@@ -94,3 +94,10 @@ void PGMimage::write(const string& fileName)
 
     ofs.close();
 }
+int main(){
+    using namespace std;
+
+    cout<< "oK so this thing is running"<<endl;
+
+    return 0;
+}
