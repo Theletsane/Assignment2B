@@ -94,10 +94,21 @@ void PGMimage::write(const string& fileName)
 
     ofs.close();
 }
-int main(){
-    using namespace std;
 
-    cout<< "oK so this thing is running"<<endl;
+void promt_user(string command){
+    int gridSize;
+    if (command=="gridSize"){
+        cout<<"Enter size of grid: ";
+        cin >> gridSize;
+
+        if(gridSize%2 == 0){cerr << "Grid size must be an odd numer(e.g 1,3,5,...)"<< endl;}
+    }
+}
+
+int main(){
+
+
+    
 
     return 0;
 }
