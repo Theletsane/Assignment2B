@@ -97,12 +97,25 @@ void PGMimage::write(const string& fileName)
 
 void promt_user(string command){
     int gridSize;
-    if (command=="gridSize"){
+    string imagePath;
+    int totalMoves;
+    if (command=="gridSize")
+    {
         cout<<"Enter size of grid: ";
         cin >> gridSize;
 
         if(gridSize%2 == 0){cerr << "Grid size must be an odd numer(e.g 1,3,5,...)"<< endl;}
+    } else if(command =="imagePath")
+    {
+        cout<<"Enter image name/path: ";
+        cin>>imagePath;
+    } else if(command=="moves")
+    {
+        cout<<"Enter number of moves to produce: ";
+        cin>>totalMoves;
     }
+
+
 }
 
 int main(){
