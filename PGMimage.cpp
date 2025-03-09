@@ -103,7 +103,7 @@ void promt_user(){
     cout<<"Enter size of grid: ";
     cin >> gridSize;
 
-    if(gridSize%2 == 0){cerr << "Grid size must be an odd numer(e.g 1,3,5,...)"<< endl;}
+    if(gridSize%2 == 0){cerr << "Grid size must be an odd number(e.g 1,3,5,...)"<< endl;exit(0);}
    
     cout<<"Enter image name/path: ";
     cin>>imagePath;
