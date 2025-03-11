@@ -13,6 +13,9 @@ using namespace std;
 int gridSize;
 string imagePath;
 int totalMoves;
+int IMAGE_WIDTH ;
+int IMAGE_HEIGHT ;
+
 void PGMimage::setImageData(unsigned char* data, int wd, int ht)
 {
     if (data == nullptr || wd < 1 || ht < 1)
@@ -64,7 +67,7 @@ void PGMimage::read(const string& fileName)
 
     buffer = new unsigned char[width * height];
     ifs.read(reinterpret_cast<char*>(buffer), width * height);
-
+    
     if (!ifs)
     {
         cerr << "Failed to read binary block - read\n";
@@ -116,9 +119,11 @@ void promt_user(){
 }
 
 int main(){
-
-    promt_user();
     
-
+    promt_user();
+    PGMimage pgmimage;
+    pgmimage.read(imagePath);
+    pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
+    
     return 0;
 }
