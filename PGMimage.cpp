@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-
+#include <vector>
 #include "PGMimage.h"
 
 using namespace std;
@@ -15,7 +15,8 @@ string imagePath;
 int totalMoves;
 int IMAGE_WIDTH ;
 int IMAGE_HEIGHT ;
-
+typedef vector<unsigned char> TILE;
+vector<TILE> GRID;
 void PGMimage::setImageData(unsigned char* data, int wd, int ht)
 {
     if (data == nullptr || wd < 1 || ht < 1)
@@ -117,6 +118,12 @@ void promt_user(){
 
 
 }
+void setTiles(){
+    int tileWidth = IMAGE_WIDTH / gridSize;
+    int tileHeights = IMAGE_HEIGHT / gridSize;
+
+
+}
 
 int main(){
     
@@ -124,6 +131,6 @@ int main(){
     PGMimage pgmimage;
     pgmimage.read(imagePath);
     pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
-    
+
     return 0;
 }
