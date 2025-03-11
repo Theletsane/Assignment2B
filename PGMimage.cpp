@@ -118,10 +118,20 @@ void promt_user(){
 
 
 }
-void setTiles(){
+void setTiles(unsigned char* buffer){
     int tileWidth = IMAGE_WIDTH / gridSize;
     int tileHeights = IMAGE_HEIGHT / gridSize;
+    
+    int x = 0;
+    while(x<IMAGE_WIDTH*IMAGE_HEIGHT){
+        TILE tile;
+        for(int y = 0;y<tileHeights*tileHeights;y++){
+            x = x+y;
+            tile.push_back(buffer[x]);
+        }
 
+        GRID.push_back(tile);
+    }
 
 }
 
