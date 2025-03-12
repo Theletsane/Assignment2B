@@ -102,23 +102,6 @@ void PGMimage::write(const string& fileName)
     ofs.close();
 }
 
-void promt_user(){
-    
-    
-    cout<<"Enter size of grid: ";
-    cin >> gridSize;
-
-    if(gridSize%2 == 0){cerr << "Grid size must be an odd number(e.g 1,3,5,...)"<< endl;exit(0);}
-   
-    cout<<"Enter image name/path: ";
-    cin>>imagePath;
-    
-    cout<<"Enter number of moves to produce: ";
-    cin>>totalMoves;
-    
-
-
-}
 void setTiles(const unsigned char* buffer)
 {
     int tileWidth = IMAGE_WIDTH / gridSize;
@@ -151,9 +134,9 @@ void setTiles(const unsigned char* buffer)
     }
 }
 
-int main(){
+int main(int argc, char *argv[]){
     
-    promt_user();
+    
     PGMimage pgmimage;
     pgmimage.read(imagePath);
     pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
