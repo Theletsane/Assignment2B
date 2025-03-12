@@ -102,37 +102,7 @@ void PGMimage::write(const string& fileName)
     ofs.close();
 }
 
-void setTiles(const unsigned char* buffer)
-{
-    int tileWidth = IMAGE_WIDTH / gridSize;
-    int tileHeight = IMAGE_HEIGHT / gridSize;
-    int x = 0;
 
-    for (int i = 0; i < gridSize; ++i)
-    {
-        for (int j = 0; j < gridSize; ++j)
-        {
-            TILE tile;
-
-            for (int tY = 0; tY < tileHeight; ++tY)
-            {
-                for (int tX = 0; tX < tileWidth; ++tX)
-                {
-                    int index = (i * tileHeight + tY) * IMAGE_WIDTH + (j * tileWidth + tX);
-                    tile.push_back(buffer[index]);
-                }
-            }
-
-            GRID.push_back(tile);
-        }
-    }
-
-    TILE& lastTile = GRID.back();
-    for (unsigned char& pixel : lastTile)
-    {
-        pixel = 0;  // Set each pixel value to 0 (black)
-    }
-}
 
 int main(int argc, char *argv[]){
     
