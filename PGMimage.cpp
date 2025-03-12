@@ -118,21 +118,36 @@ void promt_user(){
 
 
 }
-void setTiles(unsigned char* buffer){
+void setTiles(const unsigned char* buffer)
+{
     int tileWidth = IMAGE_WIDTH / gridSize;
-    int tileHeights = IMAGE_HEIGHT / gridSize;
-    
+    int tileHeight = IMAGE_HEIGHT / gridSize;
     int x = 0;
-    while(x<IMAGE_WIDTH*IMAGE_HEIGHT){
-        TILE tile;
-        for(int y = 0;y<tileHeights*tileHeights;y++){
-            x = x+y;
-            tile.push_back(buffer[x]);
-        }
 
-        GRID.push_back(tile);
+    for (int i = 0; i < gridSize; ++i)
+    {
+        for (int j = 0; j < gridSize; ++j)
+        {
+            TILE tile;
+
+            for (int tY = 0; tY < tileHeight; ++tY)
+            {
+                for (int tX = 0; tX < tileWidth; ++tX)
+                {
+                    int index = (i * tileHeight + tY) * IMAGE_WIDTH + (j * tileWidth + tX);
+                    tile.push_back(buffer[index]);
+                }
+            }
+
+            GRID.push_back(tile);
+        }
     }
 
+    TILE& lastTile = GRID.back();
+    for (unsigned char& pixel : lastTile)
+    {
+        pixel = 0;  // Set each pixel value to 0 (black)
+    }
 }
 
 int main(){
@@ -141,6 +156,6 @@ int main(){
     PGMimage pgmimage;
     pgmimage.read(imagePath);
     pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
-
+    setTiles(pgmimage.getBuffer());
     return 0;
 }
