@@ -16,8 +16,7 @@ string imagePath;
 int totalMoves;
 int IMAGE_WIDTH ;
 int IMAGE_HEIGHT ;
-typedef vector<unsigned char> TILE;
-vector<TILE> GRID;
+
 void PGMimage::setImageData(unsigned char* data, int wd, int ht)
 {
     if (data == nullptr || wd < 1 || ht < 1)
@@ -110,7 +109,6 @@ int main(int argc, char *argv[]){
     PGMimage pgmimage;
     pgmimage.read(imagePath);
     pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
-    setTiles(pgmimage.getBuffer());
-    pgmimage.write("visualise.pgm");
+    TileManager((int)argv[0],IMAGE_WIDTH,IMAGE_HEIGHT);
     return 0;
 }
