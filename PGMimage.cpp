@@ -157,5 +157,6 @@ int main(){
     pgmimage.read(imagePath);
     pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
     setTiles(pgmimage.getBuffer());
+    pgmimage.write("visualise.pgm");
     return 0;
 }
