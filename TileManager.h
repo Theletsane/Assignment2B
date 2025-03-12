@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include "Tile.h"
+
 class TileManager {
 private:
     vector<vector<Tile>> grid; // 2D grid to hold the tiles
@@ -29,7 +31,7 @@ public:
                         tileData[y * tileWidth + x] = imageData[index++];
                     }
                 }
-                tile.setPixels(tileData);
+                tile.setTILE(tileData);
                 delete[] tileData; // Free temporary memory after assigning
             }
         }
@@ -52,31 +54,6 @@ public:
             emptyX = newX;
             emptyY = newY;
         }
-    }
-
-    // Method to output the current state as a PGM image
-    void outputImage(const string& filename) {
-        ofstream file(filename, ios::binary);
-        file << "P5" << endl;
-        file << IMAGE_WIDTH << " " << IMAGE_HEIGHT << endl;
-        file << "255" << endl;
-
-        unsigned char* imageData = new unsigned char[IMAGE_WIDTH * IMAGE_HEIGHT];
-        int index = 0;
-        
-        for (int i = 0; i < gridSize; ++i) {
-            for (int j = 0; j < gridSize; ++j) {
-                const Tile& tile = grid[i][j];
-                for (int y = 0; y < tile.height; ++y) {
-                    for (int x = 0; x < tile.width; ++x) {
-                        imageData[index++] = tile.pixels[y * tile.width + x];
-                    }
-                }
-            }
-        }
-
-        file.write(reinterpret_cast<char*>(imageData), IMAGE_WIDTH * IMAGE_HEIGHT);
-        delete[] imageData;
     }
 };
     
