@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include "PGMimage.h"
+#include "TileManager.h"
 
 using namespace std;
 int gridSize;
