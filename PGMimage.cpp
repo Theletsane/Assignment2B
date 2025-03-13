@@ -106,9 +106,7 @@ void PGMimage::write(const string& fileName)
 int main(int argc, char *argv[]){
     
     
-    PGMimage pgmimage;
-    pgmimage.read(imagePath);
-    pgmimage.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
-    TileManager((int)argv[0],IMAGE_WIDTH,IMAGE_HEIGHT);
+
+    TileManager((int)argv[0],argv[1]);
     return 0;
 }
