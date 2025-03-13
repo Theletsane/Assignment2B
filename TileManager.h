@@ -4,19 +4,19 @@
 
 class TileManager {
 private:
-    vector<vector<Tile>> grid; // 2D grid to hold the tiles
+    vector<vector<Tile>> grid; 
     int gridSize;
     int IMAGE_WIDTH, IMAGE_HEIGHT;
-    int emptyX, emptyY; // Coordinates of the empty space
+    int emptyX, emptyY; 
 
 public:
-    // Constructor to initialize the grid size, image width and height
+
     TileManager(int gridSize, int IMAGE_WIDTH, int IMAGE_HEIGHT)
         : gridSize(gridSize), IMAGE_WIDTH(IMAGE_WIDTH), IMAGE_HEIGHT(IMAGE_HEIGHT), emptyX(gridSize-1), emptyY(gridSize-1) {
         grid.resize(gridSize, vector<Tile>(gridSize, Tile(IMAGE_WIDTH/gridSize, IMAGE_HEIGHT/gridSize)));
     }
 
-    // Method to generate the tiles from the image data
+   
     void generateTiles(const unsigned char* imageData) {
         int tileWidth = IMAGE_WIDTH / gridSize;
         int tileHeight = IMAGE_HEIGHT / gridSize;
@@ -32,24 +32,24 @@ public:
                     }
                 }
                 tile.setTILE(tileData);
-                delete[] tileData; // Free temporary memory after assigning
+                delete[] tileData; 
             }
         }
     }
 
-    // Method to perform a random move
+    
     void makeMove() {
-        // Randomly select an adjacent tile to swap with the empty space
-        int dx[] = { 0, 1, 0, -1 };  // Right, Down, Left, Up
+        
+        int dx[] = { 0, 1, 0, -1 };  
         int dy[] = { 1, 0, -1, 0 };
         
-        // Randomly choose a direction for the move
+        
         int direction = rand() % 4;
         int newX = emptyX + dx[direction];
         int newY = emptyY + dy[direction];
 
         if (newX >= 0 && newX < gridSize && newY >= 0 && newY < gridSize) {
-            // Swap the empty space with the tile at (newX, newY)
+            
             swap(grid[emptyX][emptyY], grid[newX][newY]);
             emptyX = newX;
             emptyY = newY;
