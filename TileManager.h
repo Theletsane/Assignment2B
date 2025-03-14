@@ -16,12 +16,14 @@ private:
     PGMimage pgmImageClass;
     int tileHeight;
     int tileWidth;
+    const unsigned char* buffer;
 public:
     TileManager(int gridSize, string imagePath){
         pgmImageClass.read(imagePath);
         pgmImageClass.getDims(IMAGE_WIDTH,IMAGE_HEIGHT);
         tileHeight = static_cast<int>(IMAGE_HEIGHT/gridSize); 
         tileWidth = static_cast<int>(IMAGE_WIDTH/gridSize);
+        buffer = pgmImageClass.getBuffer();
     }
 
     ~TileManager(){
@@ -33,11 +35,19 @@ public:
 
     void createTiles(){
 
-        for(int i =0; i< IMAGE_WIDTH;i++){
-            for(int k = 0; k< IMAGE_HEIGHT;k++){
-                for(int w = 0;w<gridSize;w++){
-
+        for(int i =0; i< gridSize;i++){
+            for(int k = 0; k< gridSize;k++){
+                unsigned char* tile_data = new unsigned char [gridSize*gridSize];
+                for(int w = 0;w<tileHeight;w++){
+                    for(int y = 0; y<tileWidth;y++){
+                        int col = k*tileWidth + y;
+                        int row = i*tileHeight +w;
+                        tile_data[w*tileHeight+y] = buffer[row*IMAGE_WIDTH+col];
+                    }
                 }
+                Tile *tile = new Tile(gridSize,gridSize);
+                tile->setTILE(tile_data);
+                TILES.push_back(tile);
             }
         }
 
