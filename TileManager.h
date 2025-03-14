@@ -8,8 +8,10 @@
 
 #include "PGMimage.h"
 class Tile {
+    private:
+    unsigned char *TILE; 
     public:
-        unsigned char* TILE; 
+        
         int width, height;
     
         Tile(int width, int height) ;
@@ -34,5 +36,7 @@ public:
     ~TileManager();
     void createTiles();
 };
+
+
 
 #endif

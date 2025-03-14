@@ -2,8 +2,11 @@
 #include "TileManager.h"
 
 
-Tile::Tile(int width, int height) : width(width), height(height) {
-    TILE = new unsigned char[width * height]; 
+Tile::Tile(int width, int height) {
+    std::cout <<"Im in tile1"<< std::endl;
+    TILE = new unsigned char[static_cast<int> (width * height)]; 
+    std::cout <<"Im in tile2"<< std::endl;
+    
 }
 
 Tile::~Tile() {

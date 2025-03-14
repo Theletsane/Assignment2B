@@ -16,6 +16,7 @@ TileManager::~TileManager() {
 }
 
 void TileManager::createTiles() {
+    
     for (int i = 0; i < GRIDSIZE; i++) {
         for (int k = 0; k < GRIDSIZE; k++) {
             unsigned char* tile_data = new unsigned char[GRIDSIZE * GRIDSIZE];
@@ -26,16 +27,19 @@ void TileManager::createTiles() {
                     tile_data[w * tileHeight + y] = buffer[row * IMAGE_WIDTH + col];
                 }
             }
-            Tile* tile = new Tile(GRIDSIZE, GRIDSIZE);
-            tile->setTILE(tile_data);
-            TILES.push_back(tile);
+            std::cout <<"Im here1"<< std::endl;
+            Tile tile(tileWidth, tileHeight);
+            
+            tile.setTILE(tile_data);
+            TILES.push_back(&tile);
         }
     }
-    
+    std::cout <<"Im here2"<< std::endl;
     unsigned char* tile_data = new unsigned char[GRIDSIZE * GRIDSIZE];
     for (int i = 0; i < GRIDSIZE * GRIDSIZE; i++) {
         tile_data[i] = 0;
     }
+    std::cout <<"Im here3"<< std::endl;
     TILES.back()->setTILE(tile_data);
     pgmImageClass.write("see_blocks.pgm");
 }

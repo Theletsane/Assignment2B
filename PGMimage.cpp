@@ -112,5 +112,6 @@ int main(int argc, char *argv[]){
     string inputImage = argv[4];
 
     TileManager tilemanager(gridSize,inputImage);
+    tilemanager.createTiles();
     return 0;
 }
