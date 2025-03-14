@@ -105,8 +105,12 @@ void PGMimage::write(const string& fileName)
 
 int main(int argc, char *argv[]){
     
-    
+    //cout <<"this is my arguments: " <<argc;
+    int gridSize = stoi(argv[1]);
+    string outputName = argv[2];
+    int numMoves = stoi(argv[3]);
+    string inputImage = argv[4];
 
-    TileManager((int)argv[0],argv[1]);
+    TileManager tilemanager(gridSize,inputImage);
     return 0;
 }
